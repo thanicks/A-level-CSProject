@@ -1,0 +1,111 @@
+/* General Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;  /* Ensures padding/border are included in the width */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+}
+
+/* Main Container */
+.container {
+    background: white;
+    padding: 25px;
+    width: 100%;  /* Ensure full width */
+    max-width: 1200px;  /* Limit the width */
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    justify-content: flex-start;  /* Align elements to the left */
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap;  /* Allow wrapping on smaller screens */
+}
+
+/* Adjust Input Language and Text Area */
+.language-dropdown {
+    width: 60%;  /* Increased width for better readability */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.textarea-group {
+    width: 35%;  /* Reduced width */
+    flex: 2;  /* Ensure this section is also flexible */
+}
+
+/* Label Alignment and Input */
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #444;
+    text-align: left;  /* Align labels to the left */
+}
+
+/* Adjust Dropdowns */
+.language-dropdown select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Textarea Styling */
+textarea {
+    resize: vertical;  /* Allow vertical resize only */
+    height: 150px;
+    width: 100%;
+}
+
+/* Button Styling */
+button {
+    background-color: #007BFF;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .language-dropdown,
+    .textarea-group {
+        width: 100%;  /* Make dropdowns and text area take full width */
+    }
+
+    .input-section {
+        flex-direction: column;  /* Stack elements vertically on smaller screens */
+    }
+
+    .container {
+        padding: 20px;  /* Adjust padding for smaller screens */
+    }
+}
