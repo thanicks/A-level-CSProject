@@ -6,7 +6,7 @@ import language_tool_python  # Import language_tool_python
 import os
 
 app = Flask(__name__)
-app.secret_key = "secret123"
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'default_secret')
 
 LANGUAGES = {
     'en': 'English',
