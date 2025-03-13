@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 from deep_translator import GoogleTranslator
 from gtts import gTTS
 import language_tool_python  # Import language_tool_python
-
 import os
 
 app = Flask(__name__)
@@ -43,16 +42,19 @@ def index():
             if input_lang == "en":  # language_tool_python works for multiple languages, but we will use it for english here.
                 tool = language_tool_python.LanguageTool('en-US')
                 input_text = tool.correct(input_text)  # Correct grammar
-                tool.close() #close the tool.
+                tool.close()  # close the tool.
 
             # Translate the corrected input text
             translator = GoogleTranslator(source=input_lang, target=output_lang)
             translated_text = translator.translate(input_text)
 
             # Generate speech file using gTTS
-            audio_file = "static/translated_audio.mp3"
+            audio_filename = "translated_audio.mp3" #changed from audio_file
+            audio_file = os.path.join("static", audio_filename) #added os.path.join
             tts = gTTS(text=translated_text, lang=output_lang)
             tts.save(audio_file)
+
+            audio_file = audio_filename #added this line.
         except Exception as e:
             flash(f"Translation error: {str(e)}", "error")
             return redirect(url_for("index"))
@@ -61,10 +63,9 @@ def index():
                            output_lang=output_lang, translated_text=translated_text,
                            audio_file=audio_file, languages=LANGUAGES)
 
-@app.route("/static/<path:filename>")
+@app.route("/static/<filename>") #removed path:
 def serve_audio(filename):
     return send_from_directory("static", filename)
 
 if __name__ == "__main__":
     app.run(debug=True)
-    
